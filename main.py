@@ -15,7 +15,7 @@ if __name__ == '__main__':
         exit(0)
     else:
         bot = Mainclass()
-        print("Напишите что-нибудь (на английском)")
+        print("Напишите что-нибудь на английском (для выхода введите 0)")
         while True:
 
             frase = input(': ')
