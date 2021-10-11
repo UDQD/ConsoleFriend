@@ -7,7 +7,7 @@ import string
 
 class Mainclass:
     def __init__(self):
-        self.targ_vec = []
+        self.targ_vec = [1,1,1]
         self.sp_df = pd.read_csv('dialog_data.csv')
         self.alf = string.ascii_lowercase
         self.di = self.create_di()
@@ -29,3 +29,6 @@ class Mainclass:
         for e in new_s:
             m[self.di[e]] += 1
         return m
+
+    def cust_cos(self, m):
+        return cosine(self.targ_vec, m)
