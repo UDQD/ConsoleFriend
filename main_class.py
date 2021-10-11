@@ -32,3 +32,12 @@ class Mainclass:
 
     def cust_cos(self, m):
         return cosine(self.targ_vec, m)
+
+    def response(self, s):
+        self.targ_vec = self.get_vertex(s)
+        self.sp_df['dist'] = self.sp_df['Line_vec'].apply(self.cust_cos)
+
+        resp = self.sp_df[self.sp_df['dist'] == self.sp_df['dist'].min()]
+        x = rnd(0, len(resp) - 1)
+
+        return resp.iloc[x]['Line_2']
