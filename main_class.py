@@ -12,6 +12,7 @@ class Mainclass:
         self.sp_df = pd.read_csv('dialog_data.csv')
         self.alf = string.ascii_lowercase
         self.di = self.create_di()
+        self.sp_df['Line_vec'] = self.sp_df['Line_vec'].apply(self.low_dim)
 
     def create_di(self):
         di = {}
@@ -40,7 +41,7 @@ class Mainclass:
 
     def response(self, s):
         self.targ_vec = self.get_vertex(s)
-        self.sp_df['Line_vec'] = self.sp_df['Line_vec'].apply(self.low_dim)
+
         self.sp_df['dist'] = self.sp_df['Line_vec'].apply(self.cust_cos)
 
         resp = self.sp_df[self.sp_df['dist'] == self.sp_df['dist'].min()]
