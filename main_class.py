@@ -17,3 +17,15 @@ class Mainclass:
         for i in range(26):
             di[self.alf[i]] = i
         return di
+
+    def get_vertex(self, s):
+
+        s = s.lower()
+        new_s = ''
+        for c in s:
+            if c in self.alf:
+                new_s += c
+        m = [0] * 26
+        for e in new_s:
+            m[self.di[e]] += 1
+        return m
