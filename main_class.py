@@ -2,6 +2,7 @@ import pandas as pd
 from scipy.spatial.distance import cosine
 from random import randint as rnd
 import string
+from ast import literal_eval
 
 
 
@@ -33,14 +34,21 @@ class Mainclass:
     def cust_cos(self, m):
         return cosine(self.targ_vec, m)
 
+    def low_dim(self, m):
+        m = literal_eval(m)
+        return m
+
     def response(self, s):
         self.targ_vec = self.get_vertex(s)
+        self.sp_df['Line_vec'] = self.sp_df['Line_vec'].apply(self.low_dim)
         self.sp_df['dist'] = self.sp_df['Line_vec'].apply(self.cust_cos)
 
         resp = self.sp_df[self.sp_df['dist'] == self.sp_df['dist'].min()]
         x = rnd(0, len(resp) - 1)
 
         return resp.iloc[x]['Line_2']
+
+
 
     def censor(self, s):
         bad_words = [self.alf[1] + self.alf[8] + self.alf[19] + self.alf[2] + self.alf[7],
